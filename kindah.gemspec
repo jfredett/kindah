@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Kindah::VERSION
   spec.authors       = ["Joe Fredette"]
   spec.email         = ["jfredett@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Kindah is an implementation of Parameterized Classes for Ruby.}
+  spec.summary       = %q{Kindah is an implementation of Parameterized Classes for Ruby.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
