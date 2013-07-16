@@ -63,7 +63,7 @@ desire to include some statefulness. Further, an aesthetic desire exists to
 invert this relationship to better express the dominant status of the _Index_
 over it's _Engine_. The solution that Kindah offers looks something like this:
 
-     parameterized_class Index do |engine|
+     parameterized_class :Index do |engine|
        def indexing_engine
          @engine ||= engine.new
        end
@@ -139,7 +139,7 @@ An implementation follows using pure ruby and using Kindah.
 
     #with kindah
 
-    parameterized_class Vector do |size|
+    parameterized_class :Vector do |size|
       def order
         size
       end
@@ -187,7 +187,7 @@ directly, eg:
 In the latter case, we can check the class, which is only the same if the two
 instances were created via the same `Vector(n)` function, eg:
 
-    parameterized_class Vector do |order|
+    parameterized_class :Vector do |order|
       def dot(other)
         raise unless other.is_a?(self.class)
         #impl
