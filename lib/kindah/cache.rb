@@ -1,7 +1,5 @@
 module Kindah
   class Cache
-    extend Forwardable
-
     def self.[](*args)
       storage[args]
     end
