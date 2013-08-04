@@ -28,8 +28,8 @@ module Kindah
     def compile!(location = Object)
       compiler = self
 
-      location.send(:define_method, class_name) do |*args|
-        Class.new do
+      location.send(:define_method, compiler.class_name) do |*args|
+        Kindah::Cache[compiler.class_name, *args] ||= Class.new do
           compiler.each_parameter do |name, idx|
             define_singleton_method(name) { args[idx] }
             define_method(name) { self.class.send(name) }

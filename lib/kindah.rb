@@ -5,6 +5,7 @@ require 'forwardable'
 require 'singleton'
 
 require 'kindah/ast'
+require 'kindah/cache'
 require 'kindah/compiler'
 
 module Kindah
