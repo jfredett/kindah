@@ -7,14 +7,14 @@ module Kindah
     end
 
     def class_methods
-      @ast.children[ClassMethods].block
+      safe_fetch ClassMethods
     end
 
     def instance_methods
-      @ast.children[InstanceMethods].block
+      safe_fetch InstanceMethods
     end
 
-    delegate [:arity, :block] => :@ast
+    delegate [:arity, :block, :children] => :@ast
     def class_name
       @ast.name
     end
@@ -42,6 +42,13 @@ module Kindah
       end
 
       nil
+    end
+
+    private
+
+    def safe_fetch(klass)
+      return proc {} unless children.has_key?(klass)
+      children[klass].block
     end
   end
 end
