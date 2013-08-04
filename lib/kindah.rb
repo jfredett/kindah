@@ -1,20 +1,22 @@
 require "kindah/version"
 
 require 'katuv'
+require 'forwardable'
+require 'singleton'
 
 require 'kindah/ast'
 require 'kindah/compiler'
 
 module Kindah
-  def class_template(name, opts={}, &block)
+  def self.class_template(name, opts={}, &block)
     template = Kindah::ClassTemplate.new(name, opts.merge(parent: nil), &block)
   end
 
-  def class_template!(name, opts={}, &block)
+  def self.class_template!(name, opts={}, &block)
     compile! class_template(name, opts, &block)
   end
 
-  def compile!(template)
+  def self.compile!(template)
     Kindah::Compiler.new(template).compile!
   end
 end

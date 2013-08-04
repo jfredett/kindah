@@ -10,3 +10,4 @@ Coveralls.wear! if ENV['COVERALLS']
 
 Crystalline::Spec.install!
 
+require 'kindah'
