@@ -9,7 +9,7 @@ require 'kindah/compiler'
 
 module Kindah
   def self.class_template(name, opts={}, &block)
-    template = Kindah::ClassTemplate.new(name, opts.merge(parent: nil), &block)
+    Kindah::ClassTemplate.new(name, opts.merge(parent: nil), &block)
   end
 
   def self.class_template!(name, opts={}, &block)
