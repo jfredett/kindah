@@ -2,8 +2,9 @@
 
 Kindah is an implementation of Parameterized Classes for Ruby.
 
-Kindah is unreleased, pre-alpha software, use at your own risk, not all of this
-readme may be implemented fully, but it expresses the direction of the project.
+Kindah is unreleased, pre-alpha software, use at your own risk.
+
+Most of this README should work, but it's not yet well-tested, so be careful.
 
 ## Description
 
