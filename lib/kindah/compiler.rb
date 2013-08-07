@@ -25,13 +25,6 @@ module Kindah
       end
     end
 
-    def parameter_block(target, *args)
-      each_parameter do |name, idx|
-        target.define_singleton_method(name) { args[idx] }
-        target.send(:define_method, name) { self.class.send(name) }
-      end
-    end
-
     def compile!(location = Object)
       compiler = self # this trick carries the outer scope past ruby's stupid block-scoping rules.
 
