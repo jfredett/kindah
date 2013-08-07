@@ -25,15 +25,19 @@ module Kindah
       end
     end
 
+    def parameter_block(target, *args)
+      each_parameter do |name, idx|
+        target.define_singleton_method(name) { args[idx] }
+        target.send(:define_method, name) { self.class.send(name) }
+      end
+    end
+
     def compile!(location = Object)
       compiler = self
 
       location.send(:define_method, compiler.class_name) do |*args|
         Kindah::Cache[compiler.class_name, *args] ||= Class.new do
-          compiler.each_parameter do |name, idx|
-            define_singleton_method(name) { args[idx] }
-            define_method(name) { self.class.send(name) }
-          end
+          compiler.parameter_block(self, *args)
 
           #because ruby is weird...
           instance_eval &compiler.class_methods
