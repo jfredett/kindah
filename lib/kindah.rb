@@ -14,10 +14,10 @@ module Kindah
   end
 
   def self.class_template!(name, opts={}, &block)
-    compile! class_template(name, opts, &block)
+    compile! class_template(name, opts, &block), opts.delete(:location) || Object
   end
 
-  def self.compile!(template)
-    Kindah::Compiler.new(template).compile!
+  def self.compile!(template, location = Object)
+    Kindah::Compiler.new(template).compile!(location)
   end
 end
