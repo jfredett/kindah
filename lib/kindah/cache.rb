@@ -11,5 +11,9 @@ module Kindah
     def self.storage
       @storage ||= {}
     end
+
+    def self.clear!
+      @storage = {}
+    end
   end
 end

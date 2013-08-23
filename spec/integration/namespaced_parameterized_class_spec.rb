@@ -24,6 +24,12 @@ describe Kindah do
     end
   end
 
+  after :all do
+    TestModule.instance_eval { undef Test }
+    Object.send(:remove_const, :TestModule)
+    Kindah::Cache.clear!
+  end
+
   subject(:test_instance) { TestModule::Test(1).new }
 
   it { should respond_to :bar }
