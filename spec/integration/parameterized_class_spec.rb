@@ -22,6 +22,10 @@ describe Kindah do
       end
     end
   end
+  after :all do
+    Object.class_eval { undef Test }
+    Kindah::Cache.clear!
+  end
 
   subject(:test_instance) { Test(1).new }
 

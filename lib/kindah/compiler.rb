@@ -14,6 +14,10 @@ module Kindah
       safe_fetch InstanceMethods
     end
 
+    def superklass
+      safe_fetch(Superklass, proc { Object }).call
+    end
+
     delegate [:arity, :block, :children] => :@ast
     def class_name
       @ast.name
@@ -40,7 +44,7 @@ module Kindah
     def create_klass_with_args(*args)
       compiler = self # this trick carries the outer scope past ruby's stupid block-scoping rules.
 
-      Class.new do
+      Class.new(compiler.superklass) do
         compiler.install_template_arg_methods(self, *args)
         compiler.install_class_methods(self)
         compiler.install_instance_methods(self)
@@ -64,8 +68,8 @@ module Kindah
 
     private
 
-    def safe_fetch(klass)
-      return proc {} unless children.has_key?(klass)
+    def safe_fetch(klass, default = proc {})
+      return default unless children.has_key?(klass)
       children[klass].block
     end
   end
