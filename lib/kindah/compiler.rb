@@ -28,7 +28,9 @@ module Kindah
     def compile!(location = Object)
       compiler = self # this trick carries the outer scope past ruby's stupid block-scoping rules.
 
-      location.send(:define_method, compiler.class_name) do |*args|
+      method_type = location == Object ? :define_method : :define_singleton_method
+
+      location.send(method_type, compiler.class_name) do |*args|
         Kindah::Cache[compiler.class_name, *args] ||= compiler.create_klass_with_args *args
       end
 
