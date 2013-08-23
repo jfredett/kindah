@@ -15,7 +15,7 @@ module Kindah
     end
 
     def superklass
-      Object
+      safe_fetch(Superklass, proc { Object }).call
     end
 
     delegate [:arity, :block, :children] => :@ast
@@ -68,8 +68,8 @@ module Kindah
 
     private
 
-    def safe_fetch(klass)
-      return proc {} unless children.has_key?(klass)
+    def safe_fetch(klass, default = proc {})
+      return default unless children.has_key?(klass)
       children[klass].block
     end
   end
